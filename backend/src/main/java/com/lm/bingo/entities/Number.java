@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_numbers")
 public class Number {
@@ -20,14 +22,14 @@ public class Number {
 	
 	@ManyToOne
 	@JoinColumn(name = "admin_code")
+	@JsonIgnore
 	private Admin admin;
 	
 	public Number () {
 		
 	}
 
-	public Number(Integer id, Integer value, Admin admin) {
-		this.id = id;
+	public Number( Integer value, Admin admin) {
 		this.value = value;
 		this.admin = admin;
 	}

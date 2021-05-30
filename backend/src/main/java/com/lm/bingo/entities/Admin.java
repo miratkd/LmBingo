@@ -28,9 +28,8 @@ public class Admin {
 		
 	}
 
-	public Admin(Integer code, List<Card> cards) {
+	public Admin(Integer code) {
 		this.code = code;
-		this.cards = cards;
 	}
 
 	public Integer getCode() {

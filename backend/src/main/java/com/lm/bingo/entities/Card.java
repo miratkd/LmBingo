@@ -35,11 +35,11 @@ public class Card {
 		
 	}
 
-	public Card(Integer id, String userName, boolean bingo, List<Position> table) {
+	public Card(Integer id, String userName, boolean bingo,Admin admin) {
 		this.id = id;
 		this.userName = userName;
 		this.bingo = bingo;
-		this.table = table;
+		this.admin = admin;
 	}
 
 	public Integer getId() {
