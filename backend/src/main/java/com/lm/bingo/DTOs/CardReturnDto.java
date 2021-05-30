@@ -1,32 +1,20 @@
-package com.lm.bingo.entities;
+package com.lm.bingo.DTOs;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.lm.bingo.entities.Card;
 
-@Entity
-@Table(name = "tb_cards")
-public class Card {
+public class CardReturnDto implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	
+    private Integer id;
 	
 	private String userName;
 	
 	private boolean bingo;
 	
-	@ManyToOne
-	@JoinColumn(name = "admin_code")
-	private Admin admin;
+	private Integer adminCode;
 	
 	private Integer p1;
 	private Integer p2;
@@ -49,52 +37,65 @@ public class Card {
 	private Integer p19;
 	private Integer p20;
 	
-	
-	public void seddingTable() {
-		List<Integer> list = new ArrayList<Integer>();
-		boolean repeat;
-		Integer finished = 0;
-		Random random = new Random();
-		Integer randomInt;
-		do {
-			do {
-				randomInt = random.nextInt(99);
-				repeat = list.contains(randomInt);
-			}while(repeat);
-			list.add(randomInt);
-			finished += 1;
-		}while(finished < 20);
-		p1 = list.get(0);
-		p2 = list.get(1);
-		p3 = list.get(2);
-		p4 = list.get(3);
-		p5 = list.get(4);
-		p6 = list.get(5);
-		p7 = list.get(6);
-		p8 = list.get(7);
-		p9 = list.get(8);
-		p10 = list.get(9);
-		p11 = list.get(10);
-		p12 = list.get(11);
-		p13 = list.get(12);
-		p14 = list.get(13);
-		p15 = list.get(14);
-		p16 = list.get(15);
-		p17 = list.get(16);
-		p18 = list.get(17);
-		p19 = list.get(18);
-		p20 = list.get(19);
-	}
-	
-	public Card () {
+	public CardReturnDto() {
 		
 	}
 
-	public Card(Integer id, String userName, boolean bingo,Admin admin) {
+	public CardReturnDto(Integer id, String userName, boolean bingo, Integer adminCode, Integer p1, Integer p2,
+			Integer p3, Integer p4, Integer p5, Integer p6, Integer p7, Integer p8, Integer p9, Integer p10,
+			Integer p11, Integer p12, Integer p13, Integer p14, Integer p15, Integer p16, Integer p17, Integer p18,
+			Integer p19, Integer p20) {
 		this.id = id;
 		this.userName = userName;
 		this.bingo = bingo;
-		this.admin = admin;
+		this.adminCode = adminCode;
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+		this.p4 = p4;
+		this.p5 = p5;
+		this.p6 = p6;
+		this.p7 = p7;
+		this.p8 = p8;
+		this.p9 = p9;
+		this.p10 = p10;
+		this.p11 = p11;
+		this.p12 = p12;
+		this.p13 = p13;
+		this.p14 = p14;
+		this.p15 = p15;
+		this.p16 = p16;
+		this.p17 = p17;
+		this.p18 = p18;
+		this.p19 = p19;
+		this.p20 = p20;
+	}
+	
+	public CardReturnDto(Card entity) {
+		this.id = entity.getId();
+		this.userName = entity.getUserName();
+		this.bingo = entity.isBingo();
+		this.adminCode = entity.getAdmin().getCode();
+		this.p1 = entity.getP1();
+		this.p2 = entity.getP2();
+		this.p3 = entity.getP3();
+		this.p4 = entity.getP4();
+		this.p5 = entity.getP5();
+		this.p6 = entity.getP6();
+		this.p7 = entity.getP7();
+		this.p8 = entity.getP8();
+		this.p9 = entity.getP9();
+		this.p10 = entity.getP10();
+		this.p11 = entity.getP11();
+		this.p12 = entity.getP12();
+		this.p13 = entity.getP13();
+		this.p14 = entity.getP14();
+		this.p15 = entity.getP15();
+		this.p16 = entity.getP16();
+		this.p17 = entity.getP17();
+		this.p18 = entity.getP18();
+		this.p19 = entity.getP19();
+		this.p20 = entity.getP20();
 	}
 
 	public Integer getId() {
@@ -121,13 +122,12 @@ public class Card {
 		this.bingo = bingo;
 	}
 
-
-	public Admin getAdmin() {
-		return admin;
+	public Integer getAdminCode() {
+		return adminCode;
 	}
 
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
+	public void setAdminCode(Integer adminCode) {
+		this.adminCode = adminCode;
 	}
 
 	public Integer getP1() {
@@ -306,7 +306,7 @@ public class Card {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Card other = (Card) obj;
+		CardReturnDto other = (CardReturnDto) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -314,6 +314,7 @@ public class Card {
 			return false;
 		return true;
 	}
+
 	
 	
 
